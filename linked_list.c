@@ -24,3 +24,16 @@ void deleteNextNode(Node* currentNode){
         free(deletedNode);
     }
 }
+
+//disadvantage
+//start from the head Node and look down in order(logically oderly)
+Node* get(Node* head,int k){
+    int i=0;
+    //&&head  ->at end head=NULL head==0 but i still++ so
+    //this is why add condition &&
+    while(head && i<k){
+        head=head->next;
+        i++;
+    }
+    return head;
+}
