@@ -36,3 +36,26 @@ bool peek(Stack*s,int *val){
     *val=s->data[s->top];//only read not move
     return true;
 }
+
+//application
+//compiler find {[()]} is it match?
+bool isValidBrackets(const char *str){
+    Stack s;
+    initStack(&s);
+    for(int i=0;str[i]!='/0';i++){
+        char ch=str[i];
+        //
+        if(ch=='('||ch=='['||ch=='{'){
+            push(&s,ch);
+        }
+        else if(ch=='}'||ch==']'||ch==')'){
+            int topval;
+            if(isEmpyt(&s))return false;
+            pop(&s,&topval);
+            if(!isMatchingPair((char)topval,ch)){
+                return false;//type not mismatch
+            }
+        }
+    }
+    return isEmpty(&s);//end stack is empty
+}
